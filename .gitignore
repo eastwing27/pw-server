@@ -1,3 +1,4 @@
 /.project
 /.vs/*
 /src/pw-server/bin/*
+/src/pw-server/obj/*

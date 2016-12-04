@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется в процессе публикации или упаковки вашего веб-проекта. Вы можете настроить поведение процесса,
+изменив этот файл MSBuild. Дополнительные сведения см. по адресу http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAO+nOiEHe6EO8daJWkIrldQAAAAACAAAAAAAQZgAAAAEAACAAAADA5YCUl1t5wa8Ll0iGgBYblYYDUNZIkDyLZKJofD3nPQAAAAAOgAAAAAIAACAAAADEOZ9qExHUg7E8ouAtnaN0jyCYt06H97hP9FVIglIJkIAAAADxirVt73J5s208m7kCMpp4gHIbk4qNnmLS5Sv0j3o90ER6PdKQkMJ+Z6eDwkHbS5vidZpZL79a7wuICHKmn0xQlbxUZQZ3NFCESCeO3fazQENbsRAtXmASor1gILkEBBxTOagTscZNBD4D42fhc0rxP+gDWyqxnhq/xuj19o0iskAAAACecUDRKORTev4WE4UtWnoB+soDIHVFBQA49F0MbjMizQeXxVU52pWb7Bhj3cySJvEJ+zL6GwMBzOxc+39WGJwo</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:pwings.database.windows.net,1433;Initial Catalog=pwdb;User Id=pwadmin@pwings.database.windows.net;Password=Eastwing12345;</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EfMigrations Include="pwServer.Models.PwContext">
+      <Value>Data Source=tcp:pwings.database.windows.net,1433;Initial Catalog=pwdb;User Id=pwadmin@pwings.database.windows.net;Password=Eastwing12345;</Value>
+    </EfMigrations>
+  </ItemGroup>
+</Project>
