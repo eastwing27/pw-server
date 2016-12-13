@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using pwServer.DTO;
 using pwServer.Models;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace pwServer.Controllers
 {
@@ -23,6 +21,7 @@ namespace pwServer.Controllers
             this.db = db;
         }
         
+        //Get transaction data from POST request and trying to write new transaction
         [HttpPost]
         [Route("send")]
         public async Task<IActionResult> Send([FromBody]SendDTO dto)
@@ -56,6 +55,7 @@ namespace pwServer.Controllers
             return new OkResult();
         }
 
+        //Returns user's outgoing transactions
         [HttpGet("{id}")]
         [Route("{id}/outgoing")]
         public async Task<IActionResult> GetOutgoing(int id)
@@ -64,6 +64,7 @@ namespace pwServer.Controllers
             return new ContentResult() { Content = json };
         }
 
+        //Returns user's incoming transactions
         [HttpGet("{id}")]
         [Route("{id}/incoming")]
         public async Task<IActionResult> GetIncoming(int id)
@@ -72,6 +73,7 @@ namespace pwServer.Controllers
             return new ContentResult() { Content = json };
         }
 
+        //Returns all user's transactions
         [HttpGet("{id}")]
         [Route("{id}/all")]
         public async Task<IActionResult> GetAll(int id)
@@ -80,6 +82,11 @@ namespace pwServer.Controllers
             return new ContentResult() { Content = json };
         }
 
+        /// <summary>
+        /// Get serialized set of transactions by specified condition
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         private async Task<string> GetTransactions(Func<Transaction, bool> predicate)
         {
             var transactions = await db.Transactions.Where(t => predicate(t))

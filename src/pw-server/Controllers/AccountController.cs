@@ -24,6 +24,7 @@ namespace pwServer.Controllers
             this.db = db;
         }
 
+        //Trying to register new user using body of POST request
         [HttpPost]
         [Route("register")]
         [AllowAnonymous]
@@ -44,6 +45,7 @@ namespace pwServer.Controllers
             return new StatusCodeResult(422);
         }
 
+        //Trying to authenticate user using body of POST request
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
@@ -72,7 +74,7 @@ namespace pwServer.Controllers
             await HttpContext.Authentication.SignOutAsync("Cookies");
         }
 
-
+        //Returns full list of current server's users
         [HttpGet]
         [Route("userlist")]
         public async Task<IActionResult> GetUserList()
@@ -85,7 +87,7 @@ namespace pwServer.Controllers
             return result;
         }
 
-
+        //Returns user name, id and balance
         [HttpGet("{id}")]
         [Route("{id}/userinfo")]
         public IActionResult GetUserInfo(int id)
@@ -103,6 +105,7 @@ namespace pwServer.Controllers
             return result;
         }
 
+        //Returns user balance only
         [HttpGet("{id}")]
         [Route("{id}/balance")]
         public IActionResult GetBalance(int id)
@@ -113,6 +116,13 @@ namespace pwServer.Controllers
             return result;
         }
 
+        /// <summary>
+        /// Trying to create new users's DB entry
+        /// </summary>
+        /// <param name="Name"></param>
+        /// <param name="Email"></param>
+        /// <param name="PasswordHash"></param>
+        /// <returns></returns>
         private async Task<bool> TryRegisterAsync(string Name, string Email, string PasswordHash)
         {
             var SplittedName = Name.Split(' ');
@@ -140,6 +150,7 @@ namespace pwServer.Controllers
 
             return true;
         }
+
 
         private async Task AuthAsync(string Email)
         {
